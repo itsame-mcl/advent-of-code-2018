@@ -27,3 +27,4 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 |  2   |              5904           | jiwamotgsfrudclzbyzkhlrvp   |
 |  3   |             118840          |               919           |
 |  4   |             125444          |             18325           |
+|  5   |              10598          |                             |
