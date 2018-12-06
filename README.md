@@ -28,4 +28,4 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 |  3   |             118840          |               919           |
 |  4   |             125444          |             18325           |
 |  5   |              10598          |              5312           |
-|  6   |              4284           |                             |
+|  6   |              4284           |             35490           |
