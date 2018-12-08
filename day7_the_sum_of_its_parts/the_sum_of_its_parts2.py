@@ -20,7 +20,7 @@ workers = [0] * 5
 workers_steps = ["."] * 5
 seconds = 0
 while len(graph) > 0 or sum(workers) > 0:
-    for i in range(0,2):
+    for i in range(0,5):
         if workers[i] == 0:
             if (workers_steps[i] != "."):
                 for step in graph:
