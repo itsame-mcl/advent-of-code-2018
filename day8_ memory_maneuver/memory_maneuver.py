@@ -20,7 +20,6 @@ def parse_nodes(stream):
     node[0] = metadata
     return(node)
 
-id = 0
 while data:
     nodes.append(parse_nodes(data))
 

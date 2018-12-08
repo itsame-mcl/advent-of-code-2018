@@ -30,4 +30,4 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 |  5   |              10598          |              5312           |
 |  6   |              4284           |             35490           |
 |  7   | IJLFUVDACEHGRZPNKQWSBTMXOY  |                             |
-|  8   |               40977         |                             |
+|  8   |               40977         |              27490          |
