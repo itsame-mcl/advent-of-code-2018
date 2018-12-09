@@ -31,4 +31,4 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 |  6   |              4284           |             35490           |
 |  7   | IJLFUVDACEHGRZPNKQWSBTMXOY  |               1072          |
 |  8   |               40977         |              27490          |
-|  9   |            399745           |                             |
+|  9   |            399745           |            3349098263       |
