@@ -41,8 +41,7 @@ def display_points(data):
         display = display + "\n"
     return(display)
 
-mstd0 = calc_mstd(data)
-last_mstd = mstd0
+last_mstd = calc_mstd(data)
 last_msg = ""
 seconds = 0
 desc = True
@@ -50,7 +49,10 @@ desc = True
 while desc:
     apply_velocity(data)
     new_mstd = calc_mstd(data)
-    new_msg = display_points(data)
+    if new_mstd < 20:
+        new_msg = display_points(data)
+    else:
+        new_msg = ""
     seconds = seconds + 1
     if new_mstd > last_mstd:
         desc = False
