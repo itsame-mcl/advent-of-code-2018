@@ -33,4 +33,4 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 |  8   |               40977         |              27490          |
 |  9   |            399745           |            3349098263       |
 | 10   |              LRCXFXRP       |              10630          |
-| 11   |            235,16           |                             |
+| 11   |            235,16           |           236,227,14        |
