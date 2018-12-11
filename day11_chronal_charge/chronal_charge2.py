@@ -9,7 +9,7 @@ for y in range(1, 301):
         power = int((power / 100) % 10) - 5
         tanks.append(power)
 
-grid = np.matrix(tanks).reshape((300,300))
+grid = np.reshape(tanks, (300,300))
 
 best_square = [0] * 2
 best_power = 0
