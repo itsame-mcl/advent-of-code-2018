@@ -17,7 +17,8 @@ patterns = [0] * len(tmp_patterns)
 for key, value in tmp_patterns.items():
     patterns[key] = value
 
-for gen in range(0,50000000000):
+sums = [0] * 1000
+for gen in range(0,1000):
     next_gen = dict()
     for pot in range(min(pots)-2, max(pots)+3):
         pattern = pots.get(pot-2,0)*16 + pots.get(pot-1,0)*8 + pots.get(pot,0)*4 + pots.get(pot+1,0)*2 + pots.get(pot+2,0)
@@ -31,10 +32,11 @@ for gen in range(0,50000000000):
     if next_gen.get(min(pots)+2,0) == 0:
         del next_gen[min(pots)+2]
     pots = next_gen
+    sum_pots = 0
+    for key, value in pots.items():
+        if value == 1:
+            sum_pots += key
+    sums[gen] = sum_pots
 
-sum_pots = 0
-for key, value in pots.items():
-    if value == 1:
-        sum_pots += key
-
-print(sum_pots)
+sum_final = sums[999] + 49999999000 * (sums[999] - sums[998])
+print(sum_final)
