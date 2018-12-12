@@ -14,7 +14,7 @@ with open(os.path.join(os.path.dirname(__file__), 'input.txt'), "r", encoding="u
 
 for gen in range(0,20):
     next_gen = dict()
-    for pot in range(min(pots)-2, max(pots)+2):
+    for pot in range(min(pots)-2, max(pots)+3):
         pattern = ""
         for i in range((pot-2),(pot+3)):            
             if i in pots:
