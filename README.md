@@ -35,3 +35,4 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 | 10   |              LRCXFXRP       |              10630          |
 | 11   |            235,16           |           236,227,14        |
 | 12   |            1816             |           399999999957      |
+| 13   |            64,57            |                             |
