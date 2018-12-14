@@ -1,6 +1,6 @@
 # Advent of Code 2018
 
-Challenge de Programmation "Advent of Code" (https://adventofcode.com), édition 2018
+Challenge de Programmation "Advent of Code" (<https://adventofcode.com>), édition 2018
 
 ## Informations Générales
 
@@ -13,6 +13,7 @@ Une version retravaillée pourra éventuellement être proposée ultérieurement
 ## Structure du Dépôt
 
 Pour chaque jour, un dossier intitulé "dayX_name_of_challenge" est créé. Il contient (généralement) 3 fichiers :
+
 * input.txt : l'input personnel fourni par le site pour la réalisation du défi
 * name_of_challenge.py : le code source permettant la résolution de la 1ère partie du défi
 * name_of_challenge2.py : le code source permettant la résolution de la 2ème partie du défi
