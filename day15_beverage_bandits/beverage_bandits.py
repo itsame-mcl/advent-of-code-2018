@@ -59,8 +59,78 @@ def find_moves(mob, range, grid):
         end = maze.node(square[0], square[1])
         path, runs = finder.find_path(start, end, maze)
         if len(path) > 0:
-            results.append([square[0], square[1], len(path), path[1]])
+            results.append([square[0], square[1], len(path) - 1, path[1]])
     return(results)
+
+def find_next_move(start_x, start_y, target_x, target_y, len_min):
+    base_matrix = grid_to_matrix(grid)
+    if start_y > 0 and base_matrix[start_y - 1][start_x] == 1:
+        up_matrix = base_matrix.copy()
+        up_matrix[start_y][start_x] = 1
+        up_matrix[start_y - 1][start_x] = 0
+        up_maze = Grid(matrix=up_matrix)
+        up_start = up_maze.node(start_x, start_y - 1)
+        up_end = up_maze.node(target_x, target_y)
+        up_path, up_runs = finder.find_path(up_start, up_end, up_maze)
+        if len(up_path) > 0:
+            up_move = [start_x, start_y - 1, len(up_path) - 1]
+        else:
+            up_move = [start_x, start_y - 1, -1]
+    else:
+        up_move = [start_x, start_y - 1, -1]
+    if start_x > 0 and base_matrix[start_y][start_x - 1] == 1:
+        left_matrix = base_matrix.copy()
+        left_matrix[start_y][start_x] = 1
+        left_matrix[start_y][start_x - 1] = 0
+        left_maze = Grid(matrix=left_matrix)
+        left_start = left_maze.node(start_x - 1, start_y)
+        left_end = left_maze.node(target_x, target_y)
+        left_path, left_runs = finder.find_path(left_start, left_end, left_maze)
+        if len(left_path) > 0:
+            left_move = [start_x - 1, start_y, len(left_path) - 1]
+        else:
+            left_move = [start_x - 1, start_y, -1]
+    else:
+        left_move = [start_x - 1, start_y, -1]
+    if start_x < len_x - 1 and base_matrix[start_y][start_x + 1] == 1:
+        right_matrix = base_matrix.copy()
+        right_matrix[start_y][start_x] = 1
+        right_matrix[start_y][start_x + 1] = 0
+        right_maze = Grid(matrix=right_matrix)
+        right_start = right_maze.node(start_x + 1, start_y)
+        right_end = right_maze.node(target_x, target_y)
+        right_path, right_runs = finder.find_path(right_start, right_end, right_maze)
+        if len(right_path) > 0:
+            right_move = [start_x + 1, start_y, len(right_path) - 1]
+        else:
+            right_move = [start_x + 1, start_y, -1]
+    else:
+        right_move = [start_x + 1, start_y, -1]
+    if start_y < len_y - 1 and base_matrix[start_y + 1][start_x] == 1:
+        down_matrix = base_matrix.copy()
+        down_matrix[start_y][start_x] = 1
+        down_matrix[start_y + 1][start_x] = 0
+        down_maze = Grid(matrix=down_matrix)
+        down_start = down_maze.node(start_x, start_y + 1)
+        down_end = down_maze.node(target_x, target_y)
+        down_path, down_runs = finder.find_path(down_start, down_end, down_maze)
+        if len(down_path) > 0:
+            down_move = [start_x, start_y + 1, len(down_path) - 1]
+        else:
+            down_move = [start_x, start_y + 1, -1]
+    else:
+        down_move = [start_x, start_y + 1, -1]
+    if up_move[2] == len_min - 1:
+        return(up_move)
+    elif left_move[2] == len_min - 1:
+        return(left_move)
+    elif right_move[2] == len_min - 1:
+        return(right_move)
+    elif down_move[2] == len_min - 1:
+        return(down_move)
+    else:
+        raise ValueError
+        
 
 def action(index, mobs, grid):
     if mobs[index][0] == "E":
@@ -105,7 +175,7 @@ def action(index, mobs, grid):
             moves = find_moves(mobs[index], list_range(targets, grid), grid)
             if len(moves) > 0:
                 moves.sort(key=itemgetter(2,1,0))
-                move = list(moves[0][3])
+                move = find_next_move(mobs[index][1], mobs[index][2], moves[0][0], moves[0][1], moves[0][2])
                 grid[mobs[index][2]][mobs[index][1]] = "."
                 grid[move[1]][move[0]] = mobs[index][0]
                 mobs[index][1] = move[0]
