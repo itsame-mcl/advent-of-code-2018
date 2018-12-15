@@ -38,4 +38,4 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 | 12   |            1816             |           399999999957      |
 | 13   |            64,57            |              136,8          |
 | 14   |           3171123923        |             20353748        |
-| 15   |            178003           |                             |
+| 15   |            178003           |               48722         |
