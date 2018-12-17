@@ -60,3 +60,5 @@ def fill(square, direction="below"):
 fill((500, ymin))
 print(len([pt for pt in flowing | settled if ymin <= pt[1] <= ymax]))
 print(len([pt for pt in settled if ymin <= pt[1] <= ymax]))
+
+# Version based on sciyoshi : https://www.reddit.com/r/adventofcode/comments/a6wpup/2018_day_17_solutions/ebyq6mj
