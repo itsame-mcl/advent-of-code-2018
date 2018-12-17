@@ -69,14 +69,12 @@ while loop:
             if(len(y_clay) > 1):
                 for i in range(0,len(y_clay)-1):
                     interval_full = True
-                    for x in range(y_clay[i] + 1,y_clay[i+1]):
-                        if (x not in x_water):
-                            interval_full = False
-                            break
-                    if interval_full:
-                        for x in range(y_clay[i] + 1,y_clay[i+1]):
+                    interval = set(range(y_clay[i] + 1,y_clay[i+1]))
+                    if interval.issubset(x_water):
+                        for x in interval:
                             rest.add((x,y))
                             water.remove((x,y))
+    print(min_y)
     if min_y > max_search:
         loop = False
 
