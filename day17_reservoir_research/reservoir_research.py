@@ -74,10 +74,10 @@ while loop:
                         for x in interval:
                             rest.add((x,y))
                             water.remove((x,y))
-    print(min_y)
     if min_y > max_search:
         loop = False
 
 scope_water = [square for square in water if square[1] >= min_search and square[1] <= max_search]
 solve = len(scope_water) + len(rest)
 print(solve)
+print(len(rest))
