@@ -40,3 +40,8 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 | 14   |           3171123923        |             20353748        |
 | 15   |            178003           |               48722         |
 | 16   |            542              |               575           |
+| 17   |            50838            |               43039         |
+
+## Références
+
+* Optimisation du jour 17 en adoptant une approche récursive : sciyoshi <https://www.reddit.com/r/adventofcode/comments/a6wpup/2018_day_17_solutions/ebyq6mj>

@@ -1,7 +1,6 @@
 import os
-from operator import itemgetter
 
-clay = list()
+clay = set()
 with open(os.path.join(os.path.dirname(__file__), 'input.txt'), "r", encoding="utf8") as f:
     for raw_line in f:
         line = raw_line.split(", ")
@@ -25,59 +24,39 @@ with open(os.path.join(os.path.dirname(__file__), 'input.txt'), "r", encoding="u
             max_x = int(x_split[1])
         for x in range(min_x,max_x + 1):
             for y in range(min_y,max_y+1):
-                if ((x,y) not in clay):
-                    clay.append((x,y))
+                    clay.add((x,y))
 
-min_search = min([square[1] for square in clay])
-max_search = max([square[1] for square in clay])
+ymin, ymax = min(clay, key=lambda square: square[1])[1], max(clay, key=lambda square: square[1])[1]
 
-x_clay = dict()
-for y in range(min_search, max_search+1):
-    y_clay = [square[0] for square in clay if square[1] == y]
-    y_clay.sort()
-    x_clay[y] = y_clay
+settled = set()
+flowing = set()
 
-clay = set(clay)
-water = set()
-water.add((500,min_search))
-rest = set()
-loop = True
-while loop:
-    scan = water.copy()
-    min_y = -1
-    for square in scan:
-        below = (square[0], square[1] + 1)
-        if (below not in clay) and (below not in rest) and (below not in water):
-            water.add(below)
-            if (below[1] < min_y) or (min_y == -1):
-                min_y = below[1]
-        elif (below in clay) or (below in rest):
-            left = (square[0] - 1, square[1])
-            if (left not in clay) and (left not in rest) and (left not in water):
-                water.add(left)
-                if (left[1] < min_y) or (min_y == -1):
-                    min_y = left[1]
-            right = (square[0] + 1, square[1])
-            if (right not in clay) and (right not in rest) and (right not in water):
-                water.add(right)
-                if (right[1] < min_y) or (right == -1):
-                    min_y = right[1]
-    for y in range(min_search, max_search+1):
-        y_clay = x_clay[y]
-        x_water = {square[0] for square in water if square[1] == y}
-        if(len(x_water) > 0):
-            if(len(y_clay) > 1):
-                for i in range(0,len(y_clay)-1):
-                    interval_full = True
-                    interval = set(range(y_clay[i] + 1,y_clay[i+1]))
-                    if interval.issubset(x_water):
-                        for x in interval:
-                            rest.add((x,y))
-                            water.remove((x,y))
-    if min_y > max_search:
-        loop = False
+def fill(square, direction="below"):
+    flowing.add(square)
 
-scope_water = [square for square in water if square[1] >= min_search and square[1] <= max_search]
-solve = len(scope_water) + len(rest)
-print(solve)
-print(len(rest))
+    below = (square[0], square[1] + 1)
+    if (below not in clay) and (below not in flowing) and (ymin <= below[1] <= ymax):
+        fill(below)
+    if (below not in clay) and (below not in settled):
+        return False
+
+    left = (square[0] - 1, square[1])
+    left_filled = (left in clay) or (left not in flowing) and fill(left, direction="left")
+
+    right = (square[0] + 1, square[1])
+    right_filled = (right in clay) or (right not in flowing) and fill(right, direction="right")
+
+    if direction == "below" and left_filled and right_filled:
+        settled.add(square)
+        while left in flowing:
+            settled.add(left)
+            left = (left[0] - 1, left[1])
+        while right in flowing:
+            settled.add(right)
+            right = (right[0] + 1, right[1])
+
+    return (direction == "left") and (left_filled or (left in clay)) or (direction == "right") and (right_filled or (right in clay))
+
+fill((500, ymin))
+print(len([pt for pt in flowing | settled if ymin <= pt[1] <= ymax]))
+print(len([pt for pt in settled if ymin <= pt[1] <= ymax]))
