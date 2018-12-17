@@ -25,50 +25,58 @@ with open(os.path.join(os.path.dirname(__file__), 'input.txt'), "r", encoding="u
             max_x = int(x_split[1])
         for x in range(min_x,max_x + 1):
             for y in range(min_y,max_y+1):
-                if ([x,y] not in clay):
-                    clay.append([x,y])
+                if ((x,y) not in clay):
+                    clay.append((x,y))
 
 min_search = min([square[1] for square in clay])
 max_search = max([square[1] for square in clay])
 
-water = [[500,min_search]]
-rest = []
+x_clay = dict()
+for y in range(min_search, max_search+1):
+    y_clay = [square[0] for square in clay if square[1] == y]
+    y_clay.sort()
+    x_clay[y] = y_clay
+
+clay = set(clay)
+water = set()
+water.add((500,min_search))
+rest = set()
 loop = True
 while loop:
-    scan = water[::]
-    scan.sort(key=lambda x: (-x[1], x[0]))
+    scan = water.copy()
     min_y = -1
     for square in scan:
-        below = [square[0], square[1] + 1]
+        below = (square[0], square[1] + 1)
         if (below not in clay) and (below not in rest) and (below not in water):
-            water.append(below)
+            water.add(below)
             if (below[1] < min_y) or (min_y == -1):
                 min_y = below[1]
         elif (below in clay) or (below in rest):
-            left = [square[0] - 1, square[1]]
+            left = (square[0] - 1, square[1])
             if (left not in clay) and (left not in rest) and (left not in water):
-                water.append(left)
+                water.add(left)
                 if (left[1] < min_y) or (min_y == -1):
                     min_y = left[1]
-            right = [square[0] + 1, square[1]]
+            right = (square[0] + 1, square[1])
             if (right not in clay) and (right not in rest) and (right not in water):
-                water.append(right)
+                water.add(right)
                 if (right[1] < min_y) or (right == -1):
                     min_y = right[1]
     for y in range(min_search, max_search+1):
-        x_clay = [square[0] for square in clay if square[1] == y]
-        if(len(x_clay)> 1):
-            x_clay.sort()
-            x_water = [square[0] for square in water if square[1] == y]
-            for i in range(0,len(x_clay)-1):
-                interval_full = True
-                for x in range(x_clay[i] + 1,x_clay[i+1]):
-                    if (x not in x_water):
-                        interval_full = False
-                if interval_full:
-                    for x in range(x_clay[i] + 1,x_clay[i+1]):
-                        rest.append([x,y])
-                        water.remove([x,y])
+        y_clay = x_clay[y]
+        x_water = {square[0] for square in water if square[1] == y}
+        if(len(x_water) > 0):
+            if(len(y_clay) > 1):
+                for i in range(0,len(y_clay)-1):
+                    interval_full = True
+                    for x in range(y_clay[i] + 1,y_clay[i+1]):
+                        if (x not in x_water):
+                            interval_full = False
+                            break
+                    if interval_full:
+                        for x in range(y_clay[i] + 1,y_clay[i+1]):
+                            rest.add((x,y))
+                            water.remove((x,y))
     if min_y > max_search:
         loop = False
 
