@@ -41,6 +41,7 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 | 15   |            178003           |               48722         |
 | 16   |            542              |               575           |
 | 17   |            50838            |               43039         |
+| 18   |            514944           |                             |
 
 ## Références
 
