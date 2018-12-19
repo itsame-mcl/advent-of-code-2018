@@ -42,7 +42,7 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 | 16   |            542              |               575           |
 | 17   |            50838            |               43039         |
 | 18   |            514944           |               193050        |
-| 19   |            1488             |                             |
+| 19   |            1488             |              17427456       |
 
 ## Références
 
