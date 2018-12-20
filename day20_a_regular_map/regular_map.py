@@ -1,12 +1,13 @@
 import os
 import sre_yield
 regex = ""
+
 # with open(os.path.join(os.path.dirname(__file__), 'input.txt'), "r", encoding="utf8") as f:
 #    for line in f:
-#        regex = line.replace("\n","")
+#        regex = line.replace("\n","").replace("^","").replace("$","")
 
-regex = "^ENNWSWW(NEWS|)SSSEEN(WNSE|)EE(SWEN|)NNN$"
-routes = sre_yield.AllStrings(regex, charset = "NEWS")
+regex = "ESSWWN(E|NNENN(EESS(WNSE|)SSS|WWWSSSSE(SW|NNNE)))"
+routes = sre_yield.AllMatches(regex)
 
 rooms = set()
 doors = set()
