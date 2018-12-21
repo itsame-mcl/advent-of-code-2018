@@ -44,7 +44,7 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 | 18   |            514944           |               193050        |
 | 19   |            1488             |              17427456       |
 | 20   |            3879             |              8464           |
-| 21   |             2525738         |                             |
+| 21   |             2525738         |             11316540        |
 
 ## Références
 
