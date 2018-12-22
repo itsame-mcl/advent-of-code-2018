@@ -45,7 +45,7 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 | 19   |            1488             |              17427456       |
 | 20   |            3879             |              8464           |
 | 21   |             2525738         |             11316540        |
-| 22   |            7901             |                             |
+| 22   |            7901             |              1087           |
 
 ## Références
 
