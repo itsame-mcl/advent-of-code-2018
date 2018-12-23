@@ -46,8 +46,9 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 | 20   |            3879             |              8464           |
 | 21   |             2525738         |             11316540        |
 | 22   |            7901             |              1087           |
-| 23   |            430              |                             |
+| 23   |            430              |             80250793        |
 
 ## Références
 
 * Optimisation du jour 17 en adoptant une approche récursive : sciyoshi <https://www.reddit.com/r/adventofcode/comments/a6wpup/2018_day_17_solutions/ebyq6mj>
+* Optimisation du jour 23 à l'aide du solveur Z3 : mebeim <https://www.reddit.com/r/adventofcode/comments/a8s17l/2018_day_23_solutions/ecdg47x/>
