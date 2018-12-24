@@ -47,6 +47,7 @@ Pour permettre le débogage d'éventuelles modifications du code, les solutions 
 | 21   |             2525738         |             11316540        |
 | 22   |            7901             |              1087           |
 | 23   |            430              |             80250793        |
+| 24   |            15470            |                             |
 
 ## Références
 
